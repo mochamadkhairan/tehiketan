@@ -2,6 +2,12 @@
 body { font-family: 'Inter', sans-serif; background-color: #FDFCFB; }
 h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
 
+nav a {
+    font-family: 'Caveat Brush', cursive;
+}
+a {
+    font-family: 'Caveat Brush', cursive;
+}
 .glass-nav {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
