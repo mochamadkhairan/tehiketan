@@ -541,3 +541,60 @@ footer a.hover\:text-red-500:hover {
     }
 }
 
+/* Floating WhatsApp Button Styles */
+#whatsappFloating {
+    animation: slideInUp 0.6s ease-out 3s both;
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+#whatsappFloating:hover {
+    text-decoration: none;
+}
+
+#whatsappFloating .group:hover > div {
+    animation: bounce 0.6s ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+/* Mobile responsive for WhatsApp button */
+@media (max-width: 640px) {
+    #whatsappFloating {
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    #whatsappFloating .relative > div:nth-child(2) {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    #whatsappFloating .relative > div:nth-child(2) i {
+        font-size: 1.5rem;
+    }
+
+    /* Hide tooltip on mobile */
+    #whatsappFloating .group-hover\:opacity-100 {
+        display: none;
+    }
+}
+
+/* Desktop - keep tooltip visible on hover */
+@media (min-width: 641px) {
+    #whatsappFloating {
+        transition: all 0.3s ease;
+    }
+}

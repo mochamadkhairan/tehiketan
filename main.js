@@ -297,3 +297,24 @@ document.querySelectorAll('#menu .menu-card button').forEach(btn => {
         window.open(whatsappUrl, '_blank');
     });
 });
+
+// Floating WhatsApp Button - Show tooltip on first load
+window.addEventListener('load', () => {
+    const whatsappBtn = document.getElementById('whatsappFloating');
+    if (whatsappBtn) {
+        // Show tooltip briefly after 4 seconds
+        setTimeout(() => {
+            const tooltip = whatsappBtn.querySelector('[class*="group-hover"]');
+            if (tooltip) {
+                tooltip.style.opacity = '1';
+                tooltip.style.pointerEvents = 'auto';
+
+                // Hide after 3 seconds
+                setTimeout(() => {
+                    tooltip.style.opacity = '0';
+                    tooltip.style.pointerEvents = 'none';
+                }, 3000);
+            }
+        }, 4000);
+    }
+});
