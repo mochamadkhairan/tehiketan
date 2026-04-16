@@ -19,6 +19,40 @@
 </head>
 <body class="text-stone-800 antialiased">
 
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="fixed inset-0 bg-gradient-to-b from-stone-900 to-stone-800 z-50 flex items-center justify-center">
+        <div class="text-center">
+            <!-- Animated Tea Glass -->
+            <div class="relative w-32 h-40 mx-auto mb-8">
+                <!-- Glass -->
+                <svg viewBox="0 0 100 150" class="w-full h-full">
+                    <!-- Glass container -->
+                    <path d="M 20 30 L 30 130 Q 30 140 40 140 L 60 140 Q 70 140 70 130 L 80 30 Z"
+                          fill="none" stroke="#fca5a5" stroke-width="2" opacity="0.7"/>
+                    <!-- Ice cubes -->
+                    <rect x="25" y="35" width="12" height="12" fill="#a0e7e5" opacity="0.6" rx="1" class="ice-cube-1"/>
+                    <rect x="50" y="45" width="12" height="12" fill="#a0e7e5" opacity="0.6" rx="1" class="ice-cube-2"/>
+                    <!-- Animated liquid -->
+                    <path id="liquidPath" d="M 30 130 Q 30 140 40 140 L 60 140 Q 70 140 70 130 L 70 130 Q 50 135 30 130 Z"
+                          fill="#d4543e" opacity="0.8" class="tea-liquid"/>
+                </svg>
+                <!-- Straw -->
+                <div class="absolute top-8 left-1/2 transform -translate-x-1/2 w-1 h-24 bg-gradient-to-b from-red-400 to-red-600 opacity-60 rounded-full" style="transform: translateX(-50%) rotate(-15deg); transform-origin: top center;"></div>
+            </div>
+
+            <!-- Loading text -->
+            <p class="text-white text-lg font-serif mb-2">Menyiapkan Es Teh Iketan</p>
+            <p class="text-red-400 text-sm font-medium tracking-widest mb-6">SEDANG LOADING...</p>
+
+            <!-- Loading dots animation -->
+            <div class="flex justify-center gap-2">
+                <div class="w-3 h-3 bg-red-500 rounded-full animate-bounce" style="animation-delay: 0s;"></div>
+                <div class="w-3 h-3 bg-red-500 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
+                <div class="w-3 h-3 bg-red-500 rounded-full animate-bounce" style="animation-delay: 0.4s;"></div>
+            </div>
+        </div>
+    </div>
+
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-10 flex justify-between items-center text-white">
          <IMG src="images/logo-iketan.jpeg" alt="Teh Iketan" class="w-16 h-16 rounded-full object-cover">
 
@@ -57,14 +91,14 @@
 
     <section id="home" class="relative h-screen w-full overflow-hidden flex items-center justify-center">
         <div class="absolute inset-0 z-0">
-            <img src="images/bg.jpg"
-                 class="w-full h-full object-cover scale-110 transition-transform duration-[10s] hover:scale-100" alt="Hero Background">
+            <video src="videos/vid-bg.mp4"
+                   class="w-full h-full object-cover" autoplay muted loop></video>
             <div class="absolute inset-0 hero-gradient"></div>
         </div>
 
         <div class="relative z-10 text-center text-white px-4" data-aos="fade-up" data-aos-duration="1500">
-            <p class="uppercase tracking-[0.3em] text-sm mb-4 italic">Segar & Nikmat</p>
-            <h1 class="text-6xl md:text-8xl font-serif mb-8 leading-tight text-shadow-lg">Berdiri Sejak <br> <span class="italic font-normal text-red-500">Kepepet</span></h1>
+            <p class="uppercase tracking-[0.3em] text-xl mb-4 italic text-red-500" id="title">IKETAN</p>
+            <h1 class="text-6xl md:text-8xl font-serif mb-8 leading-tight text-shadow-lg">"Berdiri Sejak <br> <span class="italic font-normal text-red-500">Kepepet"</span></h1>
             <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
                 <a href="#menu" class="px-8 py-4 bg-red-600 text-white rounded-full hover:bg-red-700 transition-all duration-300 font-medium tracking-wide uppercase text-xs">Lihat Menu</a>
                 <a href="#contact" class="px-8 py-4 border border-white rounded-full hover:bg-white hover:text-stone-900 transition-all duration-300 font-medium tracking-wide uppercase text-xs">Pesan Sekarang</a>
@@ -334,7 +368,7 @@
 
                 <div class="menu-card group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300" data-category="teh-susu" data-name="SuperTea" data-aos="fade-up" data-aos-delay="300">
                     <div class="relative overflow-hidden aspect-square bg-stone-100">
-                        <img src="images/milktea.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <img src="images/supertea.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute top-3 right-3 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">6k</div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                             <button class="w-full bg-white text-stone-900 py-2 rounded-lg font-semibold text-sm hover:bg-red-600 hover:text-white transition">Pesan Sekarang</button>
@@ -395,7 +429,7 @@
 
                 <div class="menu-card group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300" data-category="teh-spesial" data-name="Es Teh Lemon" data-aos="fade-up" data-aos-delay="500">
                     <div class="relative overflow-hidden aspect-square bg-stone-100">
-                        <img src="images/esteh-lemon.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <img src="images/lemontea.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute top-3 right-3 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">7k</div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                             <button class="w-full bg-white text-stone-900 py-2 rounded-lg font-semibold text-sm hover:bg-red-600 hover:text-white transition">Pesan Sekarang</button>
@@ -440,7 +474,7 @@
                                 JL. SEKELOA GG. KUBANGSARI VII NO 39 B, Bandung, Jawa Barat
                             </p>
                             <a href="https://maps.google.com/maps?q=Bandung+Sekeloa" target="_blank" rel="noopener noreferrer" class="text-red-600 text-sm font-medium hover:text-red-700 transition">
-                                Lihat Petanya →
+                                Lihat Lokasi →
                             </a>
                         </div>
                     </div>
@@ -517,23 +551,102 @@
         </div>
     </section>
 
-    <footer class="py-12 border-t border-stone-100 text-center">
-        <img src="images/logo-iketan.jpeg" alt="Teh Iketan" class="mx-auto mb-6 w-16 h-16 rounded-full object-cover">
-        <div class="flex justify-center space-x-6 mb-8">
-            <a href="https://instagram.com/tehiketan" target="_blank" rel="noopener noreferrer" class="social-icon" title="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://facebook.com/tehiketan" target="_blank" rel="noopener noreferrer" class="social-icon" title="Facebook">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="https://tiktok.com/@tehiketan" target="_blank" rel="noopener noreferrer" class="social-icon" title="TikTok">
-                <i class="fab fa-tiktok"></i>
-            </a>
-            <a href="https://youtube.com/@tehiketan" target="_blank" rel="noopener noreferrer" class="social-icon" title="YouTube">
-                <i class="fab fa-youtube"></i>
-            </a>
+    <footer class="bg-stone-900 text-stone-100 py-16 px-6 md:px-20 relative">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-600 via-red-500 to-orange-500 opacity-50"></div>
+        <div class="max-w-7xl mx-auto">
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand Section -->
+                <div data-aos="fade-up">
+                    <img src="images/logo-iketan.jpeg" alt="Teh Iketan" class="w-16 h-16 rounded-full object-cover mb-4">
+                    <h3 class="text-xl font-serif text-white mb-3">Teh Iketan</h3>
+                    <p class="text-sm text-stone-400 leading-relaxed mb-6">
+                        Es Teh racikan premium dengan harga terjangkau. Berdiri sejak 2022 untuk menghadirkan kesegaran dalam setiap tegukan.
+                    </p>
+                    <p class="text-xs text-stone-500">
+                        <span class="font-semibold">Hubungi:</span><br>
+                        +62 812 3456 7890<br>
+                        hello@tehiketan.com
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="text-lg font-serif text-white mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#home" class="text-stone-400 hover:text-red-500 transition text-sm">Beranda</a>
+                        </li>
+                        <li>
+                            <a href="#about" class="text-stone-400 hover:text-red-500 transition text-sm">Tentang Kami</a>
+                        </li>
+                        <li>
+                            <a href="#menu" class="text-stone-400 hover:text-red-500 transition text-sm">Menu</a>
+                        </li>
+                        <li>
+                            <a href="#gallery" class="text-stone-400 hover:text-red-500 transition text-sm">Galeri</a>
+                        </li>
+                        <li>
+                            <a href="#contact" class="text-stone-400 hover:text-red-500 transition text-sm">Kontak</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Branch Locations -->
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="text-lg font-serif text-white mb-6">Cabang Outlet</h4>
+                    <ul class="space-y-4">
+                        <li class="text-sm">
+                            <p class="font-semibold text-stone-200 mb-1">📍 Bandung Pusat</p>
+                            <p class="text-xs text-stone-400">Jl. Sekeloa, Coblong, Bandung</p>
+                        </li>
+                        <li class="text-sm">
+                            <p class="font-semibold text-stone-200 mb-1">📍 Bandung Timur</p>
+                            <p class="text-xs text-stone-400">Jl. Ahmad Yani, Bandung Timur</p>
+                        </li>
+                        <li class="text-sm">
+                            <p class="font-semibold text-stone-200 mb-1">📍 Bandung Barat</p>
+                            <p class="text-xs text-stone-400">Jl. Gatot Subroto, Bandung Barat</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Social Media -->
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <h4 class="text-lg font-serif text-white mb-6">Ikuti Kami</h4>
+                    <p class="text-sm text-stone-400 mb-5">Jangan lewatkan update terbaru kami di media sosial</p>
+                    <div class="flex gap-3 flex-wrap">
+                        <a href="https://instagram.com/tehiketan" target="_blank" rel="noopener noreferrer" class="footer-social-icon" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com/tehiketan" target="_blank" rel="noopener noreferrer" class="footer-social-icon" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://tiktok.com/@tehiketan" target="_blank" rel="noopener noreferrer" class="footer-social-icon" title="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://youtube.com/@tehiketan" target="_blank" rel="noopener noreferrer" class="footer-social-icon" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-stone-700 mb-8"></div>
+
+            <!-- Footer Bottom -->
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs text-stone-500">
+                    © 2026 Teh Iketan. Semua Hak Dilindungi.
+                </p>
+                <div class="flex gap-6 text-xs text-stone-500">
+                    <a href="#" class="hover:text-stone-300 transition">Privasi</a>
+                    <a href="#" class="hover:text-stone-300 transition">Syarat & Ketentuan</a>
+                    <a href="#" class="hover:text-stone-300 transition">Kebijakan Cookie</a>
+                </div>
+            </div>
         </div>
-        <p class="text-xs text-stone-400">© 2026 Teh Iketan. Semua hak dilindungi.</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

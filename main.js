@@ -5,6 +5,24 @@ AOS.init({
     easing: 'ease-out-quad'
 });
 
+// Loading Screen Handler
+window.addEventListener('load', () => {
+    const loadingScreen = document.getElementById('loadingScreen');
+    // Loading screen will fade out after 2.5s via CSS animation
+    setTimeout(() => {
+        loadingScreen.style.pointerEvents = 'none';
+    }, 2500);
+});
+
+// Fallback: Hide loading screen if it takes too long
+setTimeout(() => {
+    const loadingScreen = document.getElementById('loadingScreen');
+    if (loadingScreen && !loadingScreen.classList.contains('hidden')) {
+        loadingScreen.style.opacity = '0';
+        loadingScreen.style.visibility = 'hidden';
+    }
+}, 4000);
+
 // Navbar Scroll Logic
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
@@ -180,9 +198,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// ============================================================================
 // MENU FILTERING AND SEARCH FUNCTIONALITY
-// ============================================================================
 
 // Get elements
 const menuFilterBtns = document.querySelectorAll('.menu-filter-btn');
