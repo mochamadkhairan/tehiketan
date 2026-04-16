@@ -5,33 +5,54 @@ AOS.init({
     easing: 'ease-out-quad'
 });
 
-// Loading Screen Handler
+// Loading Screen Handler - Disable pointer events after fade out
 window.addEventListener('load', () => {
     const loadingScreen = document.getElementById('loadingScreen');
-    // Loading screen will fade out after 2.5s via CSS animation
+    // Ensure it's disabled after animation
     setTimeout(() => {
         loadingScreen.style.pointerEvents = 'none';
-    }, 2500);
+        loadingScreen.style.display = 'none';
+    }, 3300);
 });
 
-// Fallback: Hide loading screen if it takes too long
+// Fallback: Hide loading screen if it takes too long (4 seconds)
 setTimeout(() => {
     const loadingScreen = document.getElementById('loadingScreen');
-    if (loadingScreen && !loadingScreen.classList.contains('hidden')) {
-        loadingScreen.style.opacity = '0';
-        loadingScreen.style.visibility = 'hidden';
+    if (loadingScreen) {
+        loadingScreen.style.display = 'none';
+        loadingScreen.style.pointerEvents = 'none';
     }
 }, 4000);
+
+// Detect mobile
+const isMobile = () => window.innerWidth < 768;
 
 // Navbar Scroll Logic
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
-        navbar.classList.add('glass-nav', 'text-stone-800', 'py-4');
-        navbar.classList.remove('text-white', 'py-6');
+        navbar.classList.add('glass-nav', 'text-stone-800');
+        if (!isMobile()) {
+            navbar.classList.add('py-4');
+            navbar.classList.remove('py-6');
+        }
     } else {
         navbar.classList.remove('glass-nav', 'text-stone-800', 'py-4');
-        navbar.classList.add('text-white', 'py-6');
+        if (!isMobile()) {
+            navbar.classList.add('py-6');
+        }
+    }
+});
+
+// Update on window resize to handle mobile/desktop toggle
+window.addEventListener('resize', () => {
+    if (window.scrollY > 50) {
+        if (!isMobile()) {
+            navbar.classList.add('py-4');
+            navbar.classList.remove('py-6');
+        } else {
+            navbar.classList.remove('py-4', 'py-6');
+        }
     }
 });
 
@@ -54,12 +75,13 @@ function toggleMenu() {
         mobileMenu.classList.add('translate-x-0');
 
         // Animate hamburger to X
-        line1.style.transform = 'rotate(45deg) translateY(11px)';
+        line1.style.transform = 'rotate(45deg) translateY(8px)';
         line2.style.opacity = '0';
-        line3.style.transform = 'rotate(-45deg) translateY(-11px)';
+        line3.style.transform = 'rotate(-45deg) translateY(-8px)';
 
         // Disable body scroll
         document.body.style.overflow = 'hidden';
+        document.body.style.overflowX = 'hidden';
         hamburger.setAttribute('aria-expanded', 'true');
     } else {
         // Close menu
@@ -71,8 +93,9 @@ function toggleMenu() {
         line2.style.opacity = '1';
         line3.style.transform = 'none';
 
-        // Enable body scroll
-        document.body.style.overflow = 'auto';
+        // Enable body scroll - restore properly
+        document.body.style.overflow = '';
+        document.body.style.overflowX = 'hidden';
         hamburger.setAttribute('aria-expanded', 'false');
     }
 }
@@ -99,13 +122,15 @@ document.addEventListener('keydown', (e) => {
 
 // Navbar styling for mobile menu toggle
 hamburger.addEventListener('click', () => {
-    if (isOpen) {
-        navbarEl.classList.add('glass-nav', 'text-stone-800', 'py-4');
-        navbarEl.classList.remove('text-white', 'py-6');
+    // Just keep navbar styling consistent during menu toggle
+    if (!isOpen) {
+        // Opening menu - add glass effect
+        navbarEl.classList.add('glass-nav', 'text-stone-800');
     } else {
+        // Closing menu - restore based on scroll
         if (window.scrollY <= 50) {
-            navbarEl.classList.remove('glass-nav', 'text-stone-800', 'py-4');
-            navbarEl.classList.add('text-white', 'py-6');
+            navbarEl.classList.remove('glass-nav', 'text-stone-800');
+            navbarEl.classList.add('text-white');
         }
     }
 });
