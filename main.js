@@ -293,7 +293,7 @@ document.querySelectorAll('#menu .menu-card button').forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
         const menuName = btn.closest('.menu-card').dataset.name;
-        const whatsappUrl = `https://wa.me/6281234567890?text=Halo%20Teh%20Iketan!%20Saya%20ingin%20memesan%20${encodeURIComponent(menuName)}...`;
+        const whatsappUrl = `https://wa.me/6285624281498?text=Halo%20Teh%20Iketan!%20Saya%20ingin%20memesan%20${encodeURIComponent(menuName)}...`;
         window.open(whatsappUrl, '_blank');
     });
 });
