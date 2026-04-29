@@ -523,3 +523,153 @@ function showNotification(message) {
 window.addEventListener('load', () => {
     loadSavedReviews();
 });
+
+// CERTIFICATE MODAL FUNCTIONALITY
+const certBtns = document.querySelectorAll('.cert-btn');
+const certModal = document.getElementById('certModal');
+const closeCertModalBtn = document.getElementById('closeCertModal');
+const certModalContent = document.getElementById('certModalContent');
+
+// Certificate data with mock image placeholders
+const certificateData = {
+    halal: {
+        title: 'Sertifikat Halal',
+        icon: 'fa-certificate',
+        color: 'from-green-400 to-emerald-600',
+        content: `
+            <div class="text-center mb-6">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-600 rounded-full mb-4">
+                    <i class="fas fa-certificate text-white text-3xl"></i>
+                </div>
+                <h2 class="text-3xl font-serif text-stone-900">Sertifikat Halal</h2>
+                <p class="text-stone-500 mt-2">Kementerian Agama Republik Indonesia</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-green-50 to-white rounded-xl p-8 border border-green-200 mb-6">
+                <div class="grid grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <p class="text-xs text-stone-500 uppercase tracking-wide mb-1">Nomor Sertifikat</p>
+                        <p class="text-lg font-bold text-stone-900">00000-00000-000</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-stone-500 uppercase tracking-wide mb-1">Tanggal Terbit</p>
+                        <p class="text-lg font-bold text-stone-900">01 Jan 2023</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-stone-500 uppercase tracking-wide mb-1">Berlaku Hingga</p>
+                        <p class="text-lg font-bold text-stone-900">31 Des 2025</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-stone-500 uppercase tracking-wide mb-1">Status</p>
+                        <p class="text-lg font-bold text-green-600"><i class="fas fa-check-circle mr-1"></i>Aktif</p>
+                    </div>
+                </div>
+
+                <div class="border-t border-green-200 pt-6">
+                    <h3 class="font-semibold text-stone-900 mb-3">Detail Produk</h3>
+                    <ul class="space-y-2 text-sm text-stone-600">
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Es Teh Racikan Premium</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Minuman Teh Segar</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Tanpa Bahan Kimia Berbahaya</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Lolos Uji Lab Mikrobologi</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <p class="text-sm text-stone-700">
+                    <i class="fas fa-info-circle text-blue-600 mr-2"></i>
+                    Sertifikat ini menjamin bahwa produk Es Teh Iketan telah lolos seluruh proses audit halal dan memenuhi standar kehalalan menurut syariat Islam.
+                </p>
+            </div>
+        `
+    },
+    'spp-irt': {
+        title: 'Surat SPP-IRT',
+        icon: 'fa-file-contract',
+        color: 'from-blue-400 to-cyan-600',
+        content: `
+            <div class="text-center mb-6">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-400 to-cyan-600 rounded-full mb-4">
+                    <i class="fas fa-file-contract text-white text-3xl"></i>
+                </div>
+                <h2 class="text-3xl font-serif text-stone-900">Surat SPP-IRT</h2>
+                <p class="text-stone-500 mt-2">Dinas Kesehatan Kabupaten Bandung</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-blue-50 to-white rounded-xl p-8 border border-blue-200 mb-6">
+                <div class="grid grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <p class="text-xs text-stone-500 uppercase tracking-wide mb-1">Nomor Izin</p>
+                        <p class="text-lg font-bold text-stone-900">20000000000001</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-stone-500 uppercase tracking-wide mb-1">Tanggal Penerbitan</p>
+                        <p class="text-lg font-bold text-stone-900">15 Mar 2023</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-stone-500 uppercase tracking-wide mb-1">Berlaku Hingga</p>
+                        <p class="text-lg font-bold text-stone-900">14 Mar 2026</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-stone-500 uppercase tracking-wide mb-1">Status</p>
+                        <p class="text-lg font-bold text-blue-600"><i class="fas fa-check-circle mr-1"></i>Aktif</p>
+                    </div>
+                </div>
+
+                <div class="border-t border-blue-200 pt-6">
+                    <h3 class="font-semibold text-stone-900 mb-3">Standar Keselamatan Pangan</h3>
+                    <ul class="space-y-2 text-sm text-stone-600">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Higienitas Produksi Terjaga</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Kemasan Aman & Berlabel</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Proses Produksi Terawasi</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Pengurusan Limbah Proper</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                <p class="text-sm text-stone-700">
+                    <i class="fas fa-info-circle text-green-600 mr-2"></i>
+                    Surat Persetujuan Pemasaran Industri Rumah Tangga (SPP-IRT) ini membuktikan bahwa Es Teh Iketan memenuhi standar keamanan pangan dan keselamatan kerja sesuai regulasi Dinas Kesehatan.
+                </p>
+            </div>
+        `
+    }
+};
+
+// Open modal
+certBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const certType = btn.dataset.cert;
+        const data = certificateData[certType];
+
+        if (data) {
+            certModalContent.innerHTML = data.content;
+            certModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+});
+
+// Close modal
+function closeCertModal() {
+    certModal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+}
+
+closeCertModalBtn.addEventListener('click', closeCertModal);
+
+// Close on backdrop click
+certModal.addEventListener('click', (e) => {
+    if (e.target === certModal) {
+        closeCertModal();
+    }
+});
+
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !certModal.classList.contains('hidden')) {
+        closeCertModal();
+    }
+});

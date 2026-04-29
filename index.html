@@ -66,6 +66,7 @@
             <a href="#about" class="hover:text-red-600 transition">Tentang</a>
             <a href="#menu" class="hover:text-red-600 transition">Menu</a>
             <a href="#gallery" class="hover:text-red-600 transition">Galeri</a>
+            <a href="#certificate" class="hover:text-red-600 transition">Sertifikat</a>
             <a href="#contact" class="hover:text-red-600 transition">Kontak</a>
         </div>
 
@@ -84,6 +85,7 @@
                 <a href="#about" class="text-white text-xl hover:text-red-600 transition-colors duration-300 block">Tentang</a>
                 <a href="#menu" class="text-white text-xl hover:text-red-600 transition-colors duration-300 block">Menu</a>
                 <a href="#gallery" class="text-white text-xl hover:text-red-600 transition-colors duration-300 block">Galeri</a>
+                <a href="#certificate" class="text-white text-xl hover:text-red-600 transition-colors duration-300 block">Sertifikat</a>
                 <a href="#contact" class="text-white text-xl hover:text-red-600 transition-colors duration-300 block">Kontak</a>
             </nav>
             <div class="mt-8 pt-8 border-t border-white/20">
@@ -115,6 +117,7 @@
             <div class="text-white text-sm tracking-widest uppercase">Scroll Down</div>
         </div>
     </section>
+
 
     <section id="about" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
         <div class="grid md:grid-cols-2 gap-16 items-center">
@@ -257,6 +260,148 @@
             <!-- Counter -->
             <div class="text-white text-center mt-4 text-sm">
                 <span id="imageCounter">1</span> / <span id="totalImages">6</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Halal Badge -->
+    <div id="halalBadge" class="fixed bottom-24 left-12 z-40 group">
+        <div class="relative animate-float">
+            <!-- Glow effect -->
+            <div class="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+            <!-- Badge -->
+            <div class="relative w-24 h-24 bg-white rounded-full shadow-2xl flex items-center justify-center cursor-pointer group-hover:shadow-3xl transition-all duration-300 hover:scale-110">
+                <div class="text-center">
+                    <img src="images/logo-halal.avif" alt="logo halal" class="w-12 h-12 mx-auto mb-1">
+                </div>
+            </div>
+
+            <!-- Tooltip -->
+            <div class="absolute bottom-full right-0 mb-3 bg-gradient-to-b from-green-600 to-green-700 text-white text-sm font-medium px-4 py-3 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none shadow-lg border border-green-400">
+                Tersertifikat Halal
+                <div class="absolute top-full right-6 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-green-600"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificate Section -->
+    <section id="certificate" class="py-32 px-6 md:px-20 bg-gradient-to-b from-white via-stone-50 to-white">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-20" data-aos="fade-up">
+                <span class="text-green-600 tracking-[.4em] uppercase text-xs font-semibold">Sertifikasi & Lisensi</span>
+                <h2 class="text-4xl md:text-5xl font-serif mt-4 text-stone-900">Terjamin & Tersertifikat</h2>
+                <p class="text-stone-500 mt-4 text-sm max-w-xl mx-auto">Komitmen kami terhadap kualitas dan keamanan produk tercermin dalam sertifikasi halal dan lisensi operasional yang kami miliki</p>
+            </div>
+
+            <!-- Certificate Cards -->
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- Halal Certificate Card -->
+                <div class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 h-96" data-aos="fade-up" data-aos-delay="100">
+                    <!-- Background decoration -->
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-100 to-emerald-50 rounded-full -mr-16 -mt-16"></div>
+                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-green-50 to-transparent rounded-full -ml-12 -mb-12"></div>
+
+                    <!-- Content -->
+                    <div class="relative p-8 h-full flex flex-col justify-between">
+                        <!-- Icon -->
+                        <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-certificate text-white text-2xl"></i>
+                        </div>
+
+                        <!-- Text -->
+                        <div>
+                            <h3 class="text-2xl font-serif text-stone-900 mb-3">Sertifikat Halal</h3>
+                            <p class="text-stone-600 text-sm mb-6">Es Teh Iketan telah mendapatkan sertifikasi halal dari Kementerian Agama Republik Indonesia yang menjamin setiap produk kami aman dan halal dikonsumsi.</p>
+                        </div>
+
+                        <!-- Button -->
+                        <button class="cert-btn self-start px-6 py-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg font-medium text-sm hover:shadow-lg transition-all duration-300 cursor-pointer" data-cert="halal">
+                            <i class="fas fa-eye mr-2"></i>Lihat Sertifikat
+                        </button>
+                    </div>
+
+                    <!-- Border accent -->
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 via-emerald-500 to-green-400"></div>
+                </div>
+
+                <!-- SPP-IRT Certificate Card -->
+                <div class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 h-96" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Background decoration -->
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-cyan-50 rounded-full -mr-16 -mt-16"></div>
+                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-blue-50 to-transparent rounded-full -ml-12 -mb-12"></div>
+
+                    <!-- Content -->
+                    <div class="relative p-8 h-full flex flex-col justify-between">
+                        <!-- Icon -->
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-file-contract text-white text-2xl"></i>
+                        </div>
+
+                        <!-- Text -->
+                        <div>
+                            <h3 class="text-2xl font-serif text-stone-900 mb-3">Surat SPP-IRT</h3>
+                            <p class="text-stone-600 text-sm mb-6">Memiliki Surat Persetujuan Pemasaran Industri Rumah Tangga (SPP-IRT) dari Dinas Kesehatan setempat. Ini membuktikan standar keselamatan pangan kami terjaga dengan baik.</p>
+                        </div>
+
+                        <!-- Button -->
+                        <button class="cert-btn self-start px-6 py-2 bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-lg font-medium text-sm hover:shadow-lg transition-all duration-300 cursor-pointer" data-cert="spp-irt">
+                            <i class="fas fa-eye mr-2"></i>Lihat Sertifikat
+                        </button>
+                    </div>
+
+                    <!-- Border accent -->
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 via-cyan-500 to-blue-400"></div>
+                </div>
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="bg-gradient-to-r from-green-50 via-blue-50 to-green-50 rounded-2xl p-8 border border-green-100">
+                <div class="text-center mb-8">
+                    <h3 class="text-xl font-serif text-stone-900">Komitmen Kami Terhadap Kualitas</h3>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="text-center p-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-shield-alt text-green-600"></i>
+                        </div>
+                        <p class="text-sm font-medium text-stone-700">Keamanan Pangan</p>
+                    </div>
+                    <div class="text-center p-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-leaf text-blue-600"></i>
+                        </div>
+                        <p class="text-sm font-medium text-stone-700">Bahan Alami</p>
+                    </div>
+                    <div class="text-center p-4">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-check-circle text-green-600"></i>
+                        </div>
+                        <p class="text-sm font-medium text-stone-700">Halal Terjamin</p>
+                    </div>
+                    <div class="text-center p-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-users text-blue-600"></i>
+                        </div>
+                        <p class="text-sm font-medium text-stone-700">Terpercaya</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificate Modal -->
+    <div id="certModal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="relative bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <!-- Close Button -->
+            <button id="closeCertModal" class="absolute top-6 right-6 text-stone-400 hover:text-stone-900 transition text-2xl z-10">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- Modal Content -->
+            <div id="certModalContent" class="p-8">
+                <!-- Will be filled by JavaScript -->
             </div>
         </div>
     </div>
