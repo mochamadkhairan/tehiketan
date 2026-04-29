@@ -319,9 +319,23 @@ window.addEventListener('load', () => {
     }
 });
 
-// REVIEW FORM FUNCTIONALITY
+// REVIEW CAROUSEL & FORM FUNCTIONALITY
 const reviewForm = document.getElementById('reviewForm');
-const reviewContainer = document.getElementById('reviewContainer');
+const reviewCarousel = document.getElementById('reviewCarousel');
+const prevReviewBtn = document.getElementById('prevReview');
+const nextReviewBtn = document.getElementById('nextReview');
+const indicatorsContainer = document.querySelector('#review .flex.justify-center');
+
+let currentCarouselIndex = 0;
+let allReviews = []; // Will store all reviews combined
+
+const initialReviews = [
+    { name: 'Rina S.', comment: 'Pelayanan yang sangat baik dan kopi mereka benar-benar enak! Saya sudah menjadi pelanggan setia sejak beberapa bulan lalu.', type: 'loyal' },
+    { name: 'Budi W.', comment: 'Tempat yang nyaman dan kopi mereka sangat enak. Saya sering datang ke sini untuk bekerja atau bersantai.', type: 'loyal' },
+    { name: 'Siti N.', comment: 'Pelayanan sangat ramah dan profesional. Saya merekomendasikan tempat ini kepada semua teman saya.', type: 'loyal' }
+];
+
+const MAX_REVIEWS = 7; // Limit to 7 most recent reviews
 
 // Generate random avatar URL using DiceBear API
 function generateRandomAvatar(name) {
@@ -329,17 +343,22 @@ function generateRandomAvatar(name) {
     return `https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}`;
 }
 
-// Create review card HTML
-function createReviewCard(name, comment) {
-    const avatarUrl = generateRandomAvatar(name);
+// Generate avatar berdasarkan nama
+function generateAvatarFromName(name) {
+    return `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(name)}`;
+}
+
+// Create review card HTML for carousel
+function createReviewCardForCarousel(name, comment, type = 'new') {
+    const avatarUrl = type === 'loyal' ? generateAvatarFromName(name) : generateRandomAvatar(name);
     const reviewCard = document.createElement('div');
-    reviewCard.className = 'review-card bg-white rounded-lg shadow-md p-6 animate-fadeIn';
+    reviewCard.className = 'review-card bg-white rounded-lg shadow-md p-6 flex-shrink-0 w-full md:w-1/3 mx-2';
     reviewCard.innerHTML = `
         <div class="flex items-start gap-4 mb-4">
             <img src="${avatarUrl}" class="w-12 h-12 rounded-full object-cover" alt="Avatar ${name}">
             <div>
                 <h3 class="text-lg font-serif text-stone-900">${name}</h3>
-                <p class="text-sm text-stone-500">Pengunjung Baru</p>
+                <p class="text-sm text-stone-500">${type === 'loyal' ? 'Pelanggan Setia' : 'Pengunjung Baru'}</p>
             </div>
         </div>
         <p class="text-stone-600 text-sm leading-relaxed">
@@ -348,6 +367,83 @@ function createReviewCard(name, comment) {
     `;
     return reviewCard;
 }
+
+// Render carousel with latest reviews
+function renderCarousel() {
+    // Clear existing carousel cards
+    reviewCarousel.innerHTML = '';
+
+    // Get latest 7 reviews (combined initial + new)
+    const displayReviews = allReviews.slice(0, MAX_REVIEWS);
+
+    // Add cards to carousel
+    displayReviews.forEach(review => {
+        const card = createReviewCardForCarousel(review.name, review.comment, review.type);
+        reviewCarousel.appendChild(card);
+    });
+
+    // Update indicators
+    updateIndicators();
+    updateCarouselPosition();
+}
+
+// Update indicators dynamically
+function updateIndicators() {
+    const displayReviews = allReviews.slice(0, MAX_REVIEWS);
+    indicatorsContainer.innerHTML = '';
+
+    displayReviews.forEach((_, index) => {
+        const indicator = document.createElement('button');
+        indicator.className = `carousel-indicator w-2 h-2 rounded-full transition-all duration-300 ${
+            index === 0 ? 'bg-red-600 active' : 'bg-stone-300'
+        }`;
+        indicator.addEventListener('click', () => {
+            currentCarouselIndex = index;
+            updateCarouselPosition();
+        });
+        indicatorsContainer.appendChild(indicator);
+    });
+}
+
+// Update carousel position
+function updateCarouselPosition() {
+    const isMobile = window.innerWidth < 768;
+    const itemWidth = isMobile ? 100 : 33.333;
+    const translateValue = -currentCarouselIndex * itemWidth;
+    reviewCarousel.style.transform = `translateX(${translateValue}%)`;
+
+    // Update all indicators
+    const allIndicators = document.querySelectorAll('.carousel-indicator');
+    allIndicators.forEach((indicator, index) => {
+        indicator.classList.toggle('active', index === currentCarouselIndex);
+        indicator.classList.toggle('bg-red-600', index === currentCarouselIndex);
+        indicator.classList.toggle('bg-stone-300', index !== currentCarouselIndex);
+        if (index === currentCarouselIndex) {
+            indicator.style.width = '2.5rem';
+        } else {
+            indicator.style.width = '0.5rem';
+        }
+    });
+}
+
+// Navigate carousel
+function navigateCarousel(direction) {
+    const displayReviews = allReviews.slice(0, MAX_REVIEWS);
+    const totalSlides = displayReviews.length;
+
+    if (totalSlides <= 1) return;
+
+    if (direction === 'next') {
+        currentCarouselIndex = (currentCarouselIndex + 1) % totalSlides;
+    } else {
+        currentCarouselIndex = (currentCarouselIndex - 1 + totalSlides) % totalSlides;
+    }
+    updateCarouselPosition();
+}
+
+// Carousel button listeners
+prevReviewBtn.addEventListener('click', () => navigateCarousel('prev'));
+nextReviewBtn.addEventListener('click', () => navigateCarousel('next'));
 
 // Handle form submission
 reviewForm.addEventListener('submit', (e) => {
@@ -364,16 +460,22 @@ reviewForm.addEventListener('submit', (e) => {
         return;
     }
 
-    // Create new review card
-    const newReview = createReviewCard(name, comment);
+    // Add to reviews (insert at beginning for most recent)
+    allReviews.unshift({ name, comment, type: 'new', timestamp: new Date().toISOString() });
 
-    // Add to container (insert at the beginning after the form)
-    reviewContainer.insertBefore(newReview, reviewContainer.firstChild);
+    // Keep only latest MAX_REVIEWS
+    if (allReviews.length > MAX_REVIEWS) {
+        allReviews = allReviews.slice(0, MAX_REVIEWS);
+    }
 
     // Save to localStorage
     const reviews = JSON.parse(localStorage.getItem('customReviews')) || [];
-    reviews.push({ name, comment, timestamp: new Date().toISOString() });
+    reviews.unshift({ name, comment, timestamp: new Date().toISOString() });
     localStorage.setItem('customReviews', JSON.stringify(reviews));
+
+    // Re-render carousel
+    currentCarouselIndex = 0;
+    renderCarousel();
 
     // Reset form
     reviewForm.reset();
@@ -385,11 +487,22 @@ reviewForm.addEventListener('submit', (e) => {
 
 // Load saved reviews from localStorage on page load
 function loadSavedReviews() {
+    // Start with initial reviews
+    allReviews = [...initialReviews];
+
+    // Add saved reviews from localStorage
     const reviews = JSON.parse(localStorage.getItem('customReviews')) || [];
     reviews.forEach(review => {
-        const reviewCard = createReviewCard(review.name, review.comment);
-        reviewContainer.appendChild(reviewCard);
+        allReviews.push({ ...review, type: 'new' });
     });
+
+    // Keep only latest MAX_REVIEWS
+    if (allReviews.length > MAX_REVIEWS) {
+        allReviews = allReviews.slice(0, MAX_REVIEWS);
+    }
+
+    // Render carousel
+    renderCarousel();
 }
 
 // Simple notification function
@@ -406,5 +519,7 @@ function showNotification(message) {
     }, 3000);
 }
 
-// Load saved reviews when page loads
-window.addEventListener('load', loadSavedReviews);
+// Initialize on load
+window.addEventListener('load', () => {
+    loadSavedReviews();
+});

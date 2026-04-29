@@ -483,46 +483,26 @@
                 </form>
             </div>
 
-            <!-- Review Cards Container -->
-            <div id="reviewContainer" class="grid md:grid-cols-3 gap-8">
-                <!-- Review 1 -->
-                <div class="review-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex items-start gap-4 mb-4">
-                        <img src="images/avatar1.jpg" class="w-12 h-12 rounded-full object-cover" alt="Avatar Pelanggan">
-                        <div>
-                            <h3 class="text-lg font-serif text-stone-900">Rina S.</h3>
-                            <p class="text-sm text-stone-500">Pelanggan Setia</p>
-                        </div>
+            <!-- Review Carousel Container -->
+            <div class="relative">
+                <!-- Carousel Wrapper -->
+                <div class="overflow-hidden">
+                    <div id="reviewCarousel" class="flex transition-transform duration-500 ease-out">
+                        <!-- Review cards will be dynamically added here -->
                     </div>
-                    <p class="text-stone-600 text-sm leading-relaxed">
-                        "Pelayanan yang sangat baik dan kopi mereka benar-benar enak! Saya sudah menjadi pelanggan setia sejak beberapa bulan lalu."
-                    </p>
                 </div>
-                <!-- Review 2 -->
-                <div class="review-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex items-start gap-4 mb-4">
-                        <img src="images/avatar2.jpg" class="w-12 h-12 rounded-full object-cover" alt="Avatar Pelanggan">
-                        <div>
-                            <h3 class="text-lg font-serif text-stone-900">Budi W.</h3>
-                            <p class="text-sm text-stone-500">Pelanggan Setia</p>
-                        </div>
-                    </div>
-                    <p class="text-stone-600 text-sm leading-relaxed">
-                        "Tempat yang nyaman dan kopi mereka sangat enak. Saya sering datang ke sini untuk bekerja atau bersantai."
-                    </p>
-                </div>
-                <!-- Review 3 -->
-                <div class="review-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="flex items-start gap-4 mb-4">
-                        <img src="images/avatar3.jpg" class="w-12 h-12 rounded-full object-cover" alt="Avatar Pelanggan">
-                        <div>
-                            <h3 class="text-lg font-serif text-stone-900">Siti N.</h3>
-                            <p class="text-sm text-stone-500">Pelanggan Setia</p>
-                        </div>
-                    </div>
-                    <p class="text-stone-600 text-sm leading-relaxed">
-                        "Pelayanan sangat ramah dan profesional. Saya merekomendasikan tempat ini kepada semua teman saya."
-                    </p>
+
+                <!-- Navigation Buttons -->
+                <button id="prevReview" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 md:-translate-x-16 bg-red-600 hover:bg-red-700 text-white rounded-full w-10 h-10 flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 hidden md:flex">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="nextReview" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 md:translate-x-16 bg-red-600 hover:bg-red-700 text-white rounded-full w-10 h-10 flex items-center justify-center transition-all duration-300 hover:scale-110 z-10 hidden md:flex">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+
+                <!-- Carousel Indicators -->
+                <div class="flex justify-center gap-2 mt-6">
+                    <!-- Indicators will be dynamically added here -->
                 </div>
             </div>
         </div>

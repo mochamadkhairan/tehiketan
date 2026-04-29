@@ -611,6 +611,45 @@ footer a.hover\:text-red-500:hover {
     transform: translateY(-4px);
 }
 
+/* Review Carousel Styles */
+#reviewCarousel {
+    display: flex;
+    transition: transform 0.5s ease-out;
+}
+
+#review .carousel-indicator {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#review .carousel-indicator.active {
+    width: 2.5rem;
+    background-color: #dc2626;
+}
+
+#review .carousel-indicator:not(.active):hover {
+    background-color: #a78bfa;
+}
+
+/* Navigation buttons responsive */
+@media (max-width: 767px) {
+    #prevReview, #nextReview {
+        display: none !important;
+    }
+}
+
+/* Mobile carousel - full width items */
+@media (max-width: 767px) {
+    #reviewCarousel {
+        margin: 0 -0.5rem;
+    }
+
+    #review .review-card {
+        margin: 0 0.5rem;
+        width: calc(100% - 1rem);
+    }
+}
+
 /* Review form styling */
 #reviewForm input,
 #reviewForm textarea {
