@@ -318,3 +318,93 @@ window.addEventListener('load', () => {
         }, 4000);
     }
 });
+
+// REVIEW FORM FUNCTIONALITY
+const reviewForm = document.getElementById('reviewForm');
+const reviewContainer = document.getElementById('reviewContainer');
+
+// Generate random avatar URL using DiceBear API
+function generateRandomAvatar(name) {
+    const seed = Math.random().toString(36).substring(2, 15);
+    return `https://api.dicebear.com/7.x/avataaars/svg?seed=${seed}`;
+}
+
+// Create review card HTML
+function createReviewCard(name, comment) {
+    const avatarUrl = generateRandomAvatar(name);
+    const reviewCard = document.createElement('div');
+    reviewCard.className = 'review-card bg-white rounded-lg shadow-md p-6 animate-fadeIn';
+    reviewCard.innerHTML = `
+        <div class="flex items-start gap-4 mb-4">
+            <img src="${avatarUrl}" class="w-12 h-12 rounded-full object-cover" alt="Avatar ${name}">
+            <div>
+                <h3 class="text-lg font-serif text-stone-900">${name}</h3>
+                <p class="text-sm text-stone-500">Pengunjung Baru</p>
+            </div>
+        </div>
+        <p class="text-stone-600 text-sm leading-relaxed">
+            "${comment}"
+        </p>
+    `;
+    return reviewCard;
+}
+
+// Handle form submission
+reviewForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const nameInput = document.getElementById('reviewName');
+    const commentInput = document.getElementById('reviewComment');
+
+    const name = nameInput.value.trim();
+    const comment = commentInput.value.trim();
+
+    if (!name || !comment) {
+        alert('Mohon isi semua field');
+        return;
+    }
+
+    // Create new review card
+    const newReview = createReviewCard(name, comment);
+
+    // Add to container (insert at the beginning after the form)
+    reviewContainer.insertBefore(newReview, reviewContainer.firstChild);
+
+    // Save to localStorage
+    const reviews = JSON.parse(localStorage.getItem('customReviews')) || [];
+    reviews.push({ name, comment, timestamp: new Date().toISOString() });
+    localStorage.setItem('customReviews', JSON.stringify(reviews));
+
+    // Reset form
+    reviewForm.reset();
+    nameInput.focus();
+
+    // Show success message
+    showNotification('Terima kasih! Ulasan Anda telah ditambahkan.');
+});
+
+// Load saved reviews from localStorage on page load
+function loadSavedReviews() {
+    const reviews = JSON.parse(localStorage.getItem('customReviews')) || [];
+    reviews.forEach(review => {
+        const reviewCard = createReviewCard(review.name, review.comment);
+        reviewContainer.appendChild(reviewCard);
+    });
+}
+
+// Simple notification function
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-slideIn';
+    notification.textContent = message;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(400px)';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// Load saved reviews when page loads
+window.addEventListener('load', loadSavedReviews);

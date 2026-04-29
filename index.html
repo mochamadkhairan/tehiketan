@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Es Teh Iketan - Es Teh Racikan Premium dengan harga terjangkau.">
+    <meta property="og:title" content="Teh Iketan | Es Teh Racikan Premium">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.iketan.com">
+    <meta property="og:image" content="https://www.iketan.com/images/logo-iketan.jpeg">
     <title>Teh Iketan | Es Teh Racikan Premium</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -447,6 +452,78 @@
             <div id="noResults" class="hidden text-center py-12">
                 <i class="fas fa-search text-6xl text-stone-300 mb-4"></i>
                 <p class="text-stone-500 text-lg">Menu tidak ditemukan</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="review" class="py-24 px-6 md:px-20 max-w-7xl mx-auto">
+        <div>
+            <!-- Header -->
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-red-600 tracking-[.4em] uppercase text-xs font-semibold">Ulasan Pelanggan</span>
+                <h2 class="text-4xl md:text-5xl font-serif mt-4">Apa Kata Mereka?</h2>
+            </div>
+
+            <!-- Add Review Form -->
+            <div class="max-w-2xl mx-auto mb-20 bg-stone-50 rounded-lg shadow-md p-8" data-aos="fade-up">
+                <h3 class="text-2xl font-serif text-stone-900 mb-6">Bagikan Pengalaman Anda</h3>
+                <form id="reviewForm" class="space-y-4">
+                    <div>
+                        <label for="reviewName" class="block text-sm font-medium text-stone-700 mb-2">Nama Anda</label>
+                        <input type="text" id="reviewName" placeholder="Masukkan nama Anda" class="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition bg-white" required>
+                    </div>
+                    <div>
+                        <label for="reviewComment" class="block text-sm font-medium text-stone-700 mb-2">Komentar</label>
+                        <textarea id="reviewComment" rows="4" placeholder="Tulis komentar atau ulasan Anda..." class="w-full px-4 py-3 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition resize-none bg-white" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg">
+                        Kirim Ulasan
+                    </button>
+                </form>
+            </div>
+
+            <!-- Review Cards Container -->
+            <div id="reviewContainer" class="grid md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="review-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-start gap-4 mb-4">
+                        <img src="images/avatar1.jpg" class="w-12 h-12 rounded-full object-cover" alt="Avatar Pelanggan">
+                        <div>
+                            <h3 class="text-lg font-serif text-stone-900">Rina S.</h3>
+                            <p class="text-sm text-stone-500">Pelanggan Setia</p>
+                        </div>
+                    </div>
+                    <p class="text-stone-600 text-sm leading-relaxed">
+                        "Pelayanan yang sangat baik dan kopi mereka benar-benar enak! Saya sudah menjadi pelanggan setia sejak beberapa bulan lalu."
+                    </p>
+                </div>
+                <!-- Review 2 -->
+                <div class="review-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-start gap-4 mb-4">
+                        <img src="images/avatar2.jpg" class="w-12 h-12 rounded-full object-cover" alt="Avatar Pelanggan">
+                        <div>
+                            <h3 class="text-lg font-serif text-stone-900">Budi W.</h3>
+                            <p class="text-sm text-stone-500">Pelanggan Setia</p>
+                        </div>
+                    </div>
+                    <p class="text-stone-600 text-sm leading-relaxed">
+                        "Tempat yang nyaman dan kopi mereka sangat enak. Saya sering datang ke sini untuk bekerja atau bersantai."
+                    </p>
+                </div>
+                <!-- Review 3 -->
+                <div class="review-card bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-start gap-4 mb-4">
+                        <img src="images/avatar3.jpg" class="w-12 h-12 rounded-full object-cover" alt="Avatar Pelanggan">
+                        <div>
+                            <h3 class="text-lg font-serif text-stone-900">Siti N.</h3>
+                            <p class="text-sm text-stone-500">Pelanggan Setia</p>
+                        </div>
+                    </div>
+                    <p class="text-stone-600 text-sm leading-relaxed">
+                        "Pelayanan sangat ramah dan profesional. Saya merekomendasikan tempat ini kepada semua teman saya."
+                    </p>
+                </div>
             </div>
         </div>
     </section>
