@@ -324,7 +324,7 @@ const reviewForm = document.getElementById('reviewForm');
 const reviewCarousel = document.getElementById('reviewCarousel');
 const prevReviewBtn = document.getElementById('prevReview');
 const nextReviewBtn = document.getElementById('nextReview');
-const indicatorsContainer = document.querySelector('#review .flex.justify-center');
+const indicatorsContainer = document.getElementById('carouselIndicators');
 
 let currentCarouselIndex = 0;
 let allReviews = []; // Will store all reviews combined
@@ -352,16 +352,16 @@ function generateAvatarFromName(name) {
 function createReviewCardForCarousel(name, comment, type = 'new') {
     const avatarUrl = type === 'loyal' ? generateAvatarFromName(name) : generateRandomAvatar(name);
     const reviewCard = document.createElement('div');
-    reviewCard.className = 'review-card bg-white rounded-lg shadow-md p-6 flex-shrink-0 w-full md:w-1/3 mx-2';
+    reviewCard.className = 'review-card bg-white rounded-lg shadow-md p-4 md:p-6 flex-shrink-0 w-full md:w-1/2 lg:w-1/3 mx-2 my-2';
     reviewCard.innerHTML = `
-        <div class="flex items-start gap-4 mb-4">
-            <img src="${avatarUrl}" class="w-12 h-12 rounded-full object-cover" alt="Avatar ${name}">
-            <div>
-                <h3 class="text-lg font-serif text-stone-900">${name}</h3>
-                <p class="text-sm text-stone-500">${type === 'loyal' ? 'Pelanggan Setia' : 'Pengunjung Baru'}</p>
+        <div class="flex items-start gap-3 md:gap-4 mb-4">
+            <img src="${avatarUrl}" class="w-10 md:w-12 h-10 md:h-12 rounded-full object-cover flex-shrink-0" alt="Avatar ${name}">
+            <div class="flex-1 min-w-0">
+                <h3 class="text-base md:text-lg font-serif text-stone-900 truncate">${name}</h3>
+                <p class="text-xs md:text-sm text-stone-500">${type === 'loyal' ? 'Pelanggan Setia' : 'Pengunjung Baru'}</p>
             </div>
         </div>
-        <p class="text-stone-600 text-sm leading-relaxed">
+        <p class="text-stone-600 text-sm leading-relaxed line-clamp-3 md:line-clamp-none">
             "${comment}"
         </p>
     `;
@@ -408,19 +408,22 @@ function updateIndicators() {
 // Update carousel position
 function updateCarouselPosition() {
     const isMobile = window.innerWidth < 768;
-    const itemWidth = isMobile ? 100 : 33.333;
+    const itemWidth = isMobile ? 100 : (window.innerWidth < 1025 ? 50 : 33.333);
     const translateValue = -currentCarouselIndex * itemWidth;
     reviewCarousel.style.transform = `translateX(${translateValue}%)`;
 
-    // Update all indicators
+    // Update all indicators only (not buttons)
     const allIndicators = document.querySelectorAll('.carousel-indicator');
     allIndicators.forEach((indicator, index) => {
-        indicator.classList.toggle('active', index === currentCarouselIndex);
-        indicator.classList.toggle('bg-red-600', index === currentCarouselIndex);
-        indicator.classList.toggle('bg-stone-300', index !== currentCarouselIndex);
         if (index === currentCarouselIndex) {
+            indicator.classList.add('active');
+            indicator.classList.add('bg-red-600');
+            indicator.classList.remove('bg-stone-300');
             indicator.style.width = '2.5rem';
         } else {
+            indicator.classList.remove('active');
+            indicator.classList.remove('bg-red-600');
+            indicator.classList.add('bg-stone-300');
             indicator.style.width = '0.5rem';
         }
     });
